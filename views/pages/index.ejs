@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Grocery List Project</h1>
+       
+        <ul>
+            <div style="background-color: grey">
+                <span style="padding: 0 3rem 0 3rem ">Name</span>
+                <span style="padding: 0 3rem 0 3rem"> Price</span>
+              </div>
+          <% products.forEach(function(product) { %>
+            
+          <div style="background-color: lightyellow; height: 4rem; border-bottom: 1px solid black;">
+            <span style="padding: 0 3rem 0 3rem "><%= product.name %></span>
+            <span style="padding: 0 3rem 0 3rem"> <%= product.price %></span>
+            <div style="margin-left:2rem;">
+            <form action="/delete?name=<%=product.name%>" method="POST">
+                <button type="submit" id="product" >Delete</button>
+                </form>
+            </div>
+          </div>
+          <% }); %> 
+
+          <div style="background-color: white; border-bottom: 1px solid black;">
+            <span style="padding: 0 3rem 0 3rem ">Total:</span>
+            <span style="padding: 0 3rem 0 3rem"> <%= totalPrice %></span>
+            <span style="padding: 0 3rem 0 3rem"></span>
+          </div>
+        </ul>
+      </div>
+    
+
+  
+
+
+<h1 class="cover-heading">Add Grocery Items</h1>
+<form method="POST" action="/form">
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" class="form-control" id="name" name="name" placeholder="Enter Grocery Item" required>
+</div>
+<div class="form-group">
+<label for="Price">Price</label>
+<input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" required>
+</div>
+<button type="submit" class="btn btn-dark">Submit</button>
+</form>
+</main>
+
+</div>
+</body>
+<script>
+window.onload = function () {
+document.getElementById('form').classList.add('active');
+};
+</script>
+
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>
